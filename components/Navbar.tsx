@@ -31,11 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       },
       {
         label: 'Rent',
-        subLinks: [
-          'Property to rent',
-          'Student property to rent',
-         
-        ],
+        subLinks: ['Property to rent', 'Student property to rent'],
       },
       {
         label: 'House Prices',
@@ -44,14 +40,11 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
           'Property valuation',
           'Price comparison report',
           'Market trends',
-         
         ],
       },
       {
         label: 'Find Agents',
-        subLinks: [
-          'Find estate agents',
-        ],
+        subLinks: ['Find estate agents'],
       },
       {
         label: 'Commercial',
@@ -91,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   return (
     <div className='fixed w-full bg-white z-10 '>
       <div className='h-[55px] border-b-[1px]'>
-        <Container> 
+        <Container>
           <div className='flex flex-row items-center justify-between gap-3 md:gap-0 max-w-[1180px] mx-auto w-full'>
             <Logo height={100} />
             {/* menu items */}

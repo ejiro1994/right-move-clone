@@ -21,7 +21,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ children, navItems }) => {
   return (
     <div className=' lg:flex hidden'>
       {navItems.map((item) => (
-       <MenuItem key={item.label} item={item}/>
+        <MenuItem key={item.label} item={item} />
       ))}
     </div>
   )

@@ -1,6 +1,7 @@
 'use client'
 import {motion} from 'framer-motion'
 import { useState } from 'react'
+import ButtonBackground from './ButtonBackground'
 import Underline from './Underline'
 
 type MenuItemProps = {
@@ -14,7 +15,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
     const[isBeingHovered,setIsBeingHovered] = useState(false)
   return (
     <motion.div
-          className='cursor-pointer decoration-2 font-semibold py-2 px-3 hover:bg-slate-100 rounded-md relative'
+          className='cursor-pointer decoration-2 font-semibold py-2 px-3  rounded-md relative'
           onHoverStart={() => {
             setIsBeingHovered(true)
           }}
@@ -26,6 +27,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
             <span className='relative'>
           {item.label}
           {isBeingHovered && <Underline />}
+          {isBeingHovered && <ButtonBackground />}
           </span>
         </motion.div>
   )
