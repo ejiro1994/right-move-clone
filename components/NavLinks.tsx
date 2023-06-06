@@ -1,7 +1,10 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
+import Underline from './Underline'
+import MenuItem from './MenuItem'
 
 type NavLinksProps = {
   children?: React.ReactNode
@@ -13,16 +16,12 @@ type NavLinksProps = {
 
 const NavLinks: React.FC<NavLinksProps> = ({ children, navItems }) => {
   const pathname = usePathname()
+  const [isBeingHovered, setIsBeingHovered] = useState(false)
 
   return (
-    <div className='gap-x-2 lg:flex hidden'>
+    <div className=' lg:flex hidden'>
       {navItems.map((item) => (
-        <div
-          className='cursor-pointer decoration-2 hover:underline hover:underline-offset-4 font-semibold py-2 px-3 hover:bg-slate-100 rounded-md'
-          key={item.label}
-        >
-          {item.label}
-        </div>
+       <MenuItem key={item.label} item={item}/>
       ))}
     </div>
   )

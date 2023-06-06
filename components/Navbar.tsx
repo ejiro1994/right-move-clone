@@ -94,6 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
         <Container> 
           <div className='flex flex-row items-center justify-between gap-3 md:gap-0 max-w-[1180px] mx-auto w-full'>
             <Logo height={100} />
+            {/* menu items */}
             <NavLinks navItems={navItems} />
             <Button
               icon={HiOutlineUser}
