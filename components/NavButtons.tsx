@@ -11,14 +11,17 @@ type NavButtonsProps = {
     label: string
     subLinks: string[]
   }[]
-  setIsHovered: React.Dispatch<React.SetStateAction<boolean>>
+  setIsNavOpen: React.Dispatch<React.SetStateAction<boolean>>
+  isNavOpen: boolean
 }
 
 const NavButtons: React.FC<NavButtonsProps> = ({
   children,
   navConfig,
-  setIsHovered,
+  setIsNavOpen: setIsHovered,
+  isNavOpen: isNavHovered,
 }) => {
+  const [activeTab, setActiveTab] = useState(navConfig[0].label)
   return (
     <div
       className=' lg:flex hidden'
@@ -27,7 +30,7 @@ const NavButtons: React.FC<NavButtonsProps> = ({
       }}
     >
       {navConfig.map((item) => (
-        <NavButton key={item.label} navConfig={item} />
+        <NavButton key={item.label} navConfig={item} activeTab={activeTab} setActiveTab={setActiveTab} isNavHovered={isNavHovered}/>
       ))}
     </div>
   )

@@ -13,7 +13,7 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isNavOpen, setIsNavOpen] = useState(false)
   const [mouseY, setMouseY] = useState(0)
 
   const navConfig = useMemo(
@@ -95,7 +95,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
 
   useEffect(() => {
     if (mouseY > 210) {
-      setIsHovered(false)
+      setIsNavOpen(false)
     }
   }, [mouseY])
 
@@ -106,10 +106,14 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
           <div className='flex flex-row items-center justify-between gap-3 md:gap-0 max-w-[1180px] mx-auto w-full'>
             <Logo height={100} />
             {/* Navigation */}
-            <NavButtons navConfig={navConfig} setIsHovered={setIsHovered} />
+            <NavButtons
+              navConfig={navConfig}
+              setIsNavOpen={setIsNavOpen}
+              isNavOpen={isNavOpen}
+            />
             {/* Sign in */}
             <Button
-              setIsHovered={setIsHovered}
+              setIsNavOpen={setIsNavOpen}
               icon={HiOutlineUser}
               className='duration-0 tracking-wide py-2 px-3 rounded-lg ring-[#00DEB6] ring-2 flex flex-row h-auto items-center gap-x-2 text-base font-medium cursor-pointer hover:bg-[#00DEB6] '
             >
@@ -118,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
           </div>
         </Container>
         {/* Sub Nav */}
-        <AnimatePresence>{isHovered && <SubMenuBackdrop />}</AnimatePresence>
+        <AnimatePresence>{isNavOpen && <SubMenuBackdrop />}</AnimatePresence>
 
         <div></div>
       </div>
