@@ -1,17 +1,60 @@
+/*
 .pointer:hover::after {
   content: '';
-  z-index: 9999;
-  margin-top: 23px;
+  z-index: 800;
+  margin-top: 46px;
+  transform: translateX(-5px);
+  display: block;
+  width: 20px;
+  background-color: #F2F3F4;
+  background-color: red;
+
+  height: 20px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%) rotate(45deg);
+  animation: translateUp 2s forwards ease-out;
+
+ 
+}
+*/
+.pointer:hover::after {
+  content: '';
+  z-index: 800;
+  margin-top: 7px;
+  transform: translateX(-7.5px);
+  display: block;
+  width: 15px;
+  background-color: #F2F3F4;
+  border-radius: 5.5px;
+
+
+  height: 12px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+ 
+}
+
+
+.pointer:hover::before {
+  content: '';
+  z-index: 700;
+  margin-top: 22px;
   display: block;
   width: 10px;
-  border: 2px solid #eee;
-  background-color: red;
+  background-color:#F2F3F4;
+  border-top: 1.5px solid #E4E7EB;
+  border-left: 1.5px solid #E4E7EB;
   height: 10px;
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -100%) rotate(45deg);
-  animation: translateUp .4s forwards ease-out;
+  animation: translateUp .2s forwards ease-out ;
+  animation-delay: .1s;
 }
 
 @keyframes translateUp {

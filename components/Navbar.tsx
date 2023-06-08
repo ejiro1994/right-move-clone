@@ -1,22 +1,22 @@
 'use client'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { useMemo } from 'react'
-// import { FaRegUser } from 'react-icons/fa6'
+import { useEffect, useMemo, useState } from 'react'
 import { HiOutlineUser } from 'react-icons/hi'
 import Button from './Button'
 import Container from './Container'
 import Logo from './Logo'
-import NavLinks from './NavLinks'
+import NavButtons from './NavButtons'
+import SubMenuBackdrop from './SubMenuBackdrop'
+import { AnimatePresence } from 'framer-motion'
 
-type NavbarProps = {
+interface NavbarProps {
   children?: React.ReactNode
 }
 
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
-  const pathname = usePathname()
+  const [isHovered, setIsHovered] = useState(false)
+  const [mouseY, setMouseY] = useState(0)
 
-  const navItems = useMemo(
+  const navConfig = useMemo(
     () => [
       {
         label: 'Buy',
@@ -81,15 +81,35 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
     []
   )
 
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMouseY(event.clientY)
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (mouseY > 210) {
+      setIsHovered(false)
+    }
+  }, [mouseY])
+
   return (
-    <div className='fixed w-full bg-white z-10 '>
-      <div className='h-[55px] border-b-[1px]'>
+    <div className=' fixed z-10 w-full bg-white'>
+      <div className='h-[55px] border-b-[1.5px]'>
         <Container>
           <div className='flex flex-row items-center justify-between gap-3 md:gap-0 max-w-[1180px] mx-auto w-full'>
             <Logo height={100} />
-            {/* menu items */}
-            <NavLinks navItems={navItems} />
+            {/* Navigation */}
+            <NavButtons navConfig={navConfig} setIsHovered={setIsHovered} />
+            {/* Sign in */}
             <Button
+              setIsHovered={setIsHovered}
               icon={HiOutlineUser}
               className='duration-0 tracking-wide py-2 px-3 rounded-lg ring-[#00DEB6] ring-2 flex flex-row h-auto items-center gap-x-2 text-base font-medium cursor-pointer hover:bg-[#00DEB6] '
             >
@@ -97,7 +117,9 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
             </Button>
           </div>
         </Container>
-        {/* subNav */}
+        {/* Sub Nav */}
+        <AnimatePresence>{isHovered && <SubMenuBackdrop />}</AnimatePresence>
+
         <div></div>
       </div>
       {children}
