@@ -16,10 +16,10 @@ const ActivePill: React.FC<ActivePillProps> = ({}) => {
       <motion.div
         layoutId='underline'
         style={{ height: '2px', bottom: '-3px', left: '0px', right: '0px' }}
-        className='absolute   bg-slate-800'
+        className='bg-slate-800 absolute'
       />
       <motion.div
-        className='pointer'
+        className=' z-[700] block w-2.5 bg-[#f2f3f4] h-2.5 absolute -translate-x-2/4 -translate-y-full rotate-45 mt-[22px] border-l-[1.5px] border-l-[#e4e7eb] border-t-[1.5px] border-t-[#e4e7eb] border-solid left-2/4 top-full '
         initial={{
           y: 0,
           opacity: 0,

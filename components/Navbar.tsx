@@ -7,6 +7,8 @@ import Logo from './Logo'
 import NavButtons from './NavButtons'
 import SubMenuBackdrop from './SubMenuBackdrop'
 import { AnimatePresence } from 'framer-motion'
+import SubMenu from './SubMenu'
+import Link from 'next/link'
 
 interface NavbarProps {
   children?: React.ReactNode
@@ -100,11 +102,11 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   }, [mouseY])
 
   return (
-    <div className=' fixed z-10 w-full bg-white'>
+    <nav className=' fixed z-10 w-full bg-white'>
       <div className='h-[55px] border-b-[1.5px]'>
         <Container>
           <div className='flex flex-row items-center justify-between gap-3 md:gap-0 max-w-[1180px] mx-auto w-full'>
-            <Logo height={100} />
+              <Logo height={100} />
             {/* Navigation */}
             <NavButtons
               navConfig={navConfig}
@@ -123,11 +125,11 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
         </Container>
         {/* Sub Nav */}
         <AnimatePresence>{isNavOpen && <SubMenuBackdrop />}</AnimatePresence>
-
+        <SubMenu />
         <div></div>
       </div>
       {children}
-    </div>
+    </nav>
   )
 }
 

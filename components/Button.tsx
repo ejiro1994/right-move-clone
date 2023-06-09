@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   setIsNavOpen,
 }) => {
   return (
-    <div
+    <button
       className={className}
       onMouseEnter={() => {
         setIsNavOpen(false)
@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
     >
       {Icon && <Icon style={{ strokeWidth: '3px' }} size={17} />}
       <p>{children}</p>
-    </div>
+    </button>
   )
 }
 

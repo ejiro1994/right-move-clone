@@ -11,7 +11,7 @@ const SubMenuBackdrop: React.FC<SubMenuBackdropProps> = ({}) => {
       animate={{ height: '160px' }}
       exit={{ height: 0 }}
       className='mt-[1.5px] border-b-[1.5px] w-full z-[999]
-      bg-gray-100
+      bg-gray-100 absolute
       '
     />
   )
