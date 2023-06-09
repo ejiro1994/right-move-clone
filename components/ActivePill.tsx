@@ -1,5 +1,4 @@
 'use client'
-import './before.css'
 import { motion } from 'framer-motion'
 
 type ActivePillProps = {}
