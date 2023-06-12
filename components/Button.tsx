@@ -8,6 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: IconType
   strokeWidth?: number
   iconSize?: number
+  isLoading?: boolean
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -17,6 +18,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       icon: Icon,
       disabled,
+      isLoading,
       type = 'button',
       iconSize = 17,
       strokeWidth = 3,
@@ -27,16 +29,28 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         type={type}
-        className={twMerge(
-          'py-2 px-3 rounded-lg ring-[#00DEB6] flex tracking-wide items-center ring-2 gap-x-2 text-base font-medium hover:bg-[#00DEB6]',
+        disabled={isLoading}
+        className={twMerge(`
+          py-2
+          px-3
+          rounded-lg
+          ring-[#00DEB6]
+          flex
+          tracking-wide
+          items-center
+          ring-2
+          gap-x-2
+          text-base
+          font-medium
+          hover:bg-[#00DEB6]`,
           className
         )}
         ref={ref}
         {...props}
       >
-        {Icon && (
+        {Icon ? (
           <Icon style={{ strokeWidth: `${strokeWidth}px` }} size={iconSize} />
-        )}
+        ) : null}
         {children}
       </button>
     )

@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={font.className}>
         <Navbar/>{children}
-        <main>hello</main>
+        <main> <div className='text-red-500'>helo</div></main>
       </body>
     </html>
   )

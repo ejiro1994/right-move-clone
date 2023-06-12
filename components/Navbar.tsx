@@ -6,9 +6,11 @@ import Logo from './Logo'
 import NavButtons from './NavButtons'
 import SubMenuBackdrop from './SubMenuBackdrop'
 import { AnimatePresence } from 'framer-motion'
-import SubMenu from './SubMenu'
 import Link from 'next/link'
 import Button from './Button'
+import debounce from 'lodash/debounce'
+
+
 
 interface NavbarProps {
   children?: React.ReactNode
@@ -17,6 +19,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [mouseY, setMouseY] = useState(0)
+  const [isMouseMoving, setIsMouseMoving] = useState(false)
 
   const navConfig = useMemo(
     () => [
@@ -33,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
       },
       {
         label: 'Rent',
-        subLinks: ['Property to rent', 'Student property to rent'],
+        subLinks: ['Property to rent', 'Student property to rent', 'Where can I live'],
       },
       {
         label: 'House Prices',
@@ -84,53 +87,74 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
   )
 
   useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
+    const handleMouseMove = debounce((event: MouseEvent) => {
       setMouseY(event.clientY)
+      setIsMouseMoving(true)
+    }, 10)
+
+    const handleMouseStop = () => {
+      setIsMouseMoving(false)
     }
 
     window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mouseleave', handleMouseStop)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('mouseleave', handleMouseStop)
     }
   }, [])
 
   useEffect(() => {
-    if (mouseY > 210) {
+    if (mouseY > 210 && isMouseMoving) {
       setIsNavOpen(false)
     }
-  }, [mouseY])
+  }, [mouseY, isMouseMoving])
 
   return (
-    <nav className=' fixed z-10 w-full bg-white'>
-      <div className='h-[55px] border-b-[1.5px]'>
-        <Container>
-          <div className='flex flex-row items-center justify-between gap-3 md:gap-0 max-w-[1180px] mx-auto w-full'>
-            <Logo height={100} />
-            {/* Navigation */}
-            <NavButtons
-              navConfig={navConfig}
-              setIsNavOpen={setIsNavOpen}
-              isNavOpen={isNavOpen}
-            />
-            {/* Sign in */}
-            <Button
-              icon={HiOutlineUser}
-              onMouseEnter={() => {
-                setIsNavOpen(false)
-              }}
+    <>
+      <nav className=' fixed z-10 w-full bg-white' role='navigation'>
+        <div className='h-[55px] border-b-[1.5px]'>
+          <Container>
+            <div
+              className='
+            flex
+            flex-row
+            items-center
+            justify-between
+            gap-3 
+            md:gap-0
+            max-w-[1180px] mx-auto w-full
+            '
             >
-              Sign in
-            </Button>
-          </div>
-        </Container>
-        {/* Sub Nav */}
-        <AnimatePresence>{isNavOpen && <SubMenuBackdrop />}</AnimatePresence>
-        <SubMenu />
-        <div></div>
-      </div>
-      {children}
-    </nav>
+              <Link href={'/'}>
+                <Logo height={100} />
+              </Link>
+              {/* Navigation */}
+              <NavButtons
+                navConfig={navConfig}
+                setIsNavOpen={setIsNavOpen}
+                isNavOpen={isNavOpen}
+              />
+              {/* Sign in */}
+              <Button
+                icon={HiOutlineUser}
+                onMouseEnter={() => {
+                  setIsNavOpen(false)
+                }}
+              >
+                Sign in
+              </Button>
+            </div>
+          </Container>
+          {/* Sub Nav */}
+          <AnimatePresence>
+            {isNavOpen ? <SubMenuBackdrop /> : null}
+          </AnimatePresence>
+        </div>
+        {children}
+      </nav>
+    </>
   )
 }
 
