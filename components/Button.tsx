@@ -42,6 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           gap-x-2
           text-base
           font-medium
+          whitespace-nowrap
           hover:bg-[#00DEB6]`,
           className
         )}

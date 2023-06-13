@@ -84,7 +84,7 @@ const NavButton = forwardRef<HTMLLIElement, NavButtonProps>(
           ref={ref}
         >
           <span className='relative'>
-            <span className='relative z-[999]'>{buttonConfig.label}</span>
+            <span className='relative z-[999] whitespace-nowrap'>{buttonConfig.label}</span>
             {isNavOpen ? (
               <AnimatePresence>
                 {activeTab === buttonConfig.label ? <ActivePill /> : null}
@@ -92,6 +92,7 @@ const NavButton = forwardRef<HTMLLIElement, NavButtonProps>(
             ) : null}
           </span>
         </motion.li>
+        {/* sub Menu */}
         <AnimatePresence>
           {activeTab === buttonConfig.label && isNavOpen ? (
             <motion.div

@@ -7,7 +7,7 @@ import NavButtons from './NavButtons'
 import SubMenuBackdrop from './SubMenuBackdrop'
 import { AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import Button from './Button'
+import Button from '../Button'
 import debounce from 'lodash/debounce'
 
 
@@ -127,8 +127,8 @@ const Navbar: React.FC<NavbarProps> = ({ children }) => {
             max-w-[1180px] mx-auto w-full
             '
             >
-              <Link href={'/'}>
-                <Logo height={100} />
+              <Link href={'/'} className='w-[200px]'>
+                <Logo height={250} />
               </Link>
               {/* Navigation */}
               <NavButtons

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 interface LogoProps {
@@ -12,7 +13,7 @@ const Logo: React.FC<LogoProps> = ({ height }) => {
   return (
     <Image
       onClick={() => router.push('/')}
-      className={`cursor-pointer flex items-center h-[${height}px]`}
+      className={`cursor-pointer flex items-center h-[${height}px] w-auto`}
       src='/images/logo.svg'
       height={120}
       width={120}

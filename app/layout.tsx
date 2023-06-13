@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar'
+import Navbar from '@/components/navbar/Navbar'
 import { Rubik, Inter } from 'next/font/google'
 import './globals.css'
 
@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={font.className}>
         <Navbar/>{children}
-        <main> <div className='text-red-500'>helo</div></main>
+        <main> <div className='text-red-500'></div></main>
       </body>
     </html>
   )

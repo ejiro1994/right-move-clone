@@ -31,20 +31,22 @@ const NavButtons: React.FC<NavButtonsProps> = ({
   }
 
   return (
-    <ul className='lg:flex hidden'>
-      {navConfig.map((item) => (
-        <NavButton
-          key={item.label}
-          navConfig={navConfig}
-          buttonConfig={item}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          isNavOpen={isNavOpen}
-          setIsNavOpen={setIsNavOpen}
-          onHover={handleButtonHover}
-        />
-      ))}
-    </ul>
+    <div className='w-full mx-10'>
+      <ul className='lg:flex hidden  justify-end gap-5'>
+        {navConfig.map((item) => (
+          <NavButton
+            key={item.label}
+            navConfig={navConfig}
+            buttonConfig={item}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            isNavOpen={isNavOpen}
+            setIsNavOpen={setIsNavOpen}
+            onHover={handleButtonHover}
+          />
+        ))}
+      </ul>
+    </div>
   )
 }
 
