@@ -56,10 +56,6 @@ const NavButton = forwardRef<HTMLLIElement, NavButtonProps>(
 
       setLeft(event.currentTarget.getBoundingClientRect().left)
 
-      // if (onHover) {
-      //   onHover(coordinates)
-
-      // }
     }
 
     const lastTab = navConfig[navConfig.length - 1].label
@@ -103,29 +99,33 @@ const NavButton = forwardRef<HTMLLIElement, NavButtonProps>(
               className={`
              absolute
              gap-x-5
-             mt-[70px]
+             gap-y-2
+             mt-[60px]
              z-[999]
              flex
              flex-wrap
-             gap-y-5
+             flex-col
+             h-[150px]
+             
              ${
                [lastTab, secondLastTab, thirdLastTab].includes(activeTab)
-                 ? '-translate-x-[60%]  justify-end'
+                 ? '-translate-x-[40%] flex-wrap-reverse'
                  : null
              }
            `}
               style={{
                 left: `${left}px`,
                 // maxWidth: '9900px',
-                minWidth: '400px',
-                maxWidth: '600px'
+                minWidth: '100px',
+                // maxWidth: '600px',
+                // border: '1px solid red'
               }}
             >
               {/* left align here */}
               {buttonConfig.subLinks.map((link) => (
                 <Link key={link} href={textToLink(link)}>
                   <p
-                    className='rounded py-2 hover:underline hover:underline-offset-4 decoration-2 font-semibold'
+                    className='rounded py-2 hover:underline hover:underline-offset-4 decoration-2 font-semibold '
                   >
                     {link}
                   </p>
